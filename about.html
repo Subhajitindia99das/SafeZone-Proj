@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • Affordable SOS Microchip System</title>
+  <meta name="description" content="About the Affordable SOS Microchip — a hidden, low‑cost wearable that sends silent emergency alerts directly to nearby police for seniors, children, and women at risk." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --primary: #0b5cff; /* blue */
+      --primary-ink: #ffffff;
+      --accent: #ef4444; /* red */
+      --card: #f8fafc; /* slate-50 */
+      --ring: rgba(11, 92, 255, 0.2);
+      --ok: #16a34a; /* green */
+      --warn: #f59e0b; /* amber */
+      --shadow: 0 10px 25px rgba(2, 6, 23, 0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 40;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; background: #0b1220; color: #e5e7eb; border-bottom: 1px solid #111827;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(135deg, var(--primary), #60a5fa);
+      color: white; font-size: 18px; box-shadow: var(--shadow);
+    }
+    .nav { display: flex; gap: 18px; align-items: center; }
+    .nav a { color: #e5e7eb; opacity: 0.9; font-weight: 500; }
+    .nav a[aria-current="page"] { color: #ffffff; text-decoration: underline; text-underline-offset: 6px; }
+
+    /* Hero */
+    .hero {
+      padding: 56px 20px 28px; display: grid; gap: 22px; place-items: center; text-align: center;
+      background: radial-gradient(90% 120% at 50% -20%, #e8f0ff 0%, #ffffff 50%);
+    }
+    .hero h1 { font-size: clamp(28px, 4.2vw, 46px); line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+    .hero p { max-width: 850px; margin: 6px auto 0; color: var(--muted); }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
+    .badge { background: #ecf2ff; color: #123; border: 1px solid #dbe7ff; padding: 8px 12px; border-radius: 999px; font-size: 14px; }
+
+    /* Section container */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 22px 20px 56px; }
+
+    .card {
+      background: var(--card); border: 1px solid #e5e7eb; border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 22px; overflow: hidden;
+    }
+    .card h3 { margin-top: 0; margin-bottom: 8px; font-size: 20px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* About blocks */
+    .about-lead { display: grid; gap: 18px; }
+    .about-lead .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .about-lead .pill { background: #f1f5f9; color: #0f172a; border: 1px dashed #cbd5e1; padding: 10px 12px; border-radius: 12px; text-align: center; }
+
+    /* Process Flow */
+    .flow { position: relative; background: #fbfdff; border: 1px solid #e5e7eb; border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .flow h3 { margin: 0 0 12px; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px; position: relative;
+    }
+    .step {
+      position: relative; background: white; border: 1px solid #e5e7eb; border-radius: 14px; padding: 14px; box-shadow: var(--shadow);
+      display: grid; gap: 6px; justify-items: center; text-align: center; min-height: 104px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .step:hover { transform: translateY(-3px); box-shadow: 0 18px 30px rgba(2,6,23,.08); }
+    .ico { width: 40px; height: 40px; }
+    .step b { font-size: 14px; }
+    .muted { color: var(--muted); font-size: 13px; }
+
+    /* Zig-zag layout */
+    .steps .row2 { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .steps .row2 .step { }
+
+    /* Inline arrows between neighbors */
+    .arrow { display: grid; place-items: center; }
+    .arrow svg { width: 42px; height: 24px; }
+    .arrow.down svg { width: 36px; height: 46px; }
+
+    /* Simulation */
+    .sim { display: grid; gap: 12px; margin-top: 18px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      appearance: none; border: 0; background: var(--primary); color: var(--primary-ink);
+      padding: 10px 14px; border-radius: 12px; font-weight: 600; cursor: pointer; box-shadow: var(--shadow);
+    }
+    .btn:hover { filter: brightness(.95); }
+    .btn.alt { background: #e2e8f0; color: #0f172a; }
+
+    .progress { height: 8px; background: #eef2ff; border-radius: 999px; overflow: hidden; border: 1px solid #dbeafe; }
+    .bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), #60a5fa); transition: width .6s ease; }
+
+    .step.active { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring), var(--shadow); }
+    .step.done { border-color: #86efac; }
+
+    /* Features list */
+    .feature { background: white; border: 1px solid #e5e7eb; border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+    .feature h4 { margin: 0 0 6px; font-size: 16px; }
+
+    /* FAQ */
+    .faq { display: grid; gap: 10px; }
+    details { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details[open] { outline: 2px solid #dbeafe; background: #f1f5ff; }
+
+    /* Footer */
+    footer { padding: 30px 20px; text-align: center; color: var(--muted); border-top: 1px solid #e5e7eb; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps .row2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .about-lead .points { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="brand" aria-label="Brand">
+      <div class="logo" aria-hidden="true">SOS</div>
+      <div>Affordable SOS Microchip</div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="#about" aria-current="page">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero / Lead -->
+  <section id="about" class="hero">
+    <h1>Hidden, Low‑Cost SOS Microchip — built for real‑world safety</h1>
+    <p>
+      A tiny, covert wearable that sends a silent emergency alert directly to nearby authorities — designed for Alzheimer’s patients, school children without phones, and women at risk. No smartphone required.
+    </p>
+    <div class="badges" aria-label="Highlights">
+      <span class="badge">Low cost</span>
+      <span class="badge">Hidden form factor</span>
+      <span class="badge">Direct‑to‑police alert</span>
+      <span class="badge">Silent & discreet</span>
+    </div>
+  </section>
+
+  <main class="wrap" role="main">
+    <!-- Problem & Mission -->
+    <div class="grid-2 about-lead" style="margin-bottom: 24px;">
+      <div class="card">
+        <h3>Problem we’re solving</h3>
+        <p>
+          Existing safety wearables are often expensive, visible (smartwatches), or noisy (buzzers). Vulnerable users can’t always carry phones, and delays in reaching help put lives at risk.
+        </p>
+        <div class="points" style="margin-top:10px;">
+          <div class="pill">High device cost</div>
+          <div class="pill">Smartphone dependency</div>
+          <div class="pill">Slow response</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Our mission</h3>
+        <p>
+          Make safety <b>affordable, invisible, and immediate</b>. One tiny device — embedded in a pendant, shoe, or bracelet — that can silently request help and stream location to responders.
+        </p>
+        <div class="points" style="margin-top:10px;">
+          <div class="pill">Low manufacturing cost</div>
+          <div class="pill">Silent SOS</div>
+          <div class="pill">Works without phone</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process Flow with arrows -->
+    <section class="flow" aria-labelledby="flow-heading">
+      <h3 id="flow-heading">Process flow (About)</h3>
+      <p class="muted" style="margin-top:-2px; margin-bottom: 12px;">Tap “Simulate SOS” to see the sequence highlight.</p>
+
+      <!-- Steps grid: row1 left-to-right, row2 right-to-left for a zig‑zag path -->
+      <div class="steps" id="steps">
+        <!-- Row 1 -->
+        <div class="step" data-step="1">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+          </svg>
+          <b>1. SOS Trigger</b>
+          <div class="muted">Hidden press</div>
+        </div>
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M36 12 L30 8 L30 16 Z" fill="#94a3b8"/></svg></div>
+
+        <div class="step" data-step="2">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <rect x="5" y="5" width="14" height="14" rx="2" stroke-width="2"/>
+            <rect x="9" y="9" width="6" height="6" fill="currentColor"/>
+          </svg>
+          <b>2. Microchip On</b>
+          <div class="muted">Wake & verify</div>
+        </div>
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M36 12 L30 8 L30 16 Z" fill="#94a3b8"/></svg></div>
+
+        <div class="step" data-step="3">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M12 3v4M12 21v-4M3 12h4M21 12h-4" stroke-width="2"/>
+            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+          </svg>
+          <b>3. Location Track</b>
+          <div class="muted">GPS/cell/Wi‑Fi</div>
+        </div>
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M36 12 L30 8 L30 16 Z" fill="#94a3b8"/></svg></div>
+
+        <div class="step" data-step="4">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-width="2"/>
+            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          </svg>
+          <b>4. Data Send</b>
+          <div class="muted">Encrypted uplink</div>
+        </div>
+
+        <!-- Row 2 (reverse order): add a curved down arrow first -->
+        <div class="arrow down" aria-hidden="true" style="grid-column: 4 / 5; justify-self:end;">
+          <svg viewBox="0 0 36 46">
+            <path d="M2 2 C30 2, 30 22, 30 22" stroke="#94a3b8" stroke-width="2" fill="none"/>
+            <path d="M30 22 L26 16 L34 16 Z" fill="#94a3b8"/>
+          </svg>
+        </div>
+
+        <div class="row2" style="grid-column: 1 / -1;">
+          <div class="step" data-step="5">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M7 10h10" stroke-width="2"/>
+            </svg>
+            <b>5. ID Verify</b>
+            <div class="muted">Match device ID</div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M2 12 L8 8 L8 16 Z" fill="#94a3b8"/></svg></div>
+
+          <div class="step" data-step="6">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M4 12h16" stroke-width="2"/>
+              <circle cx="8" cy="12" r="3" fill="currentColor"/>
+              <circle cx="16" cy="12" r="3" stroke-width="2"/>
+            </svg>
+            <b>6. Prioritize</b>
+            <div class="muted">Risk level</div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M2 12 L8 8 L8 16 Z" fill="#94a3b8"/></svg></div>
+
+          <div class="step" data-step="7">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M12 3l4 4-4 4-4-4 4-4Z" fill="currentColor"/>
+              <path d="M4 19h16M6 16h12" stroke-width="2"/>
+            </svg>
+            <b>7. Police Alert</b>
+            <div class="muted">Nearest station</div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 42 24"><path d="M2 12 H36" stroke="#94a3b8" stroke-width="2" fill="none"/><path d="M2 12 L8 8 L8 16 Z" fill="#94a3b8"/></svg></div>
+
+          <div class="step" data-step="8">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M5 12l4 4 10-10" stroke-width="2"/>
+            </svg>
+            <b>8. Rescue Action</b>
+            <div class="muted">Dispatch & reach</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulation controls -->
+      <div class="sim" aria-live="polite">
+        <div class="actions">
+          <button class="btn" id="simulate">Simulate SOS</button>
+          <button class="btn alt" id="reset">Reset</button>
+        </div>
+        <div class="progress" aria-label="Progress"><div class="bar" id="bar"></div></div>
+        <div id="simStatus" class="muted">Ready.</div>
+      </div>
+    </section>
+
+    <!-- Why it’s different -->
+    <section id="features" style="margin-top: 26px;">
+      <h3 style="margin: 0 0 12px;">Why this is different</h3>
+      <div class="grid-4">
+        <div class="feature"><h4>Hidden & discreet</h4><p class="muted">Wear in a pendant, shoe insert, bracelet, or watch. Looks ordinary; hard to spot.</p></div>
+        <div class="feature"><h4>Direct‑to‑police</h4><p class="muted">Routes alerts to the nearest station. Family SMS optional as fallback.</p></div>
+        <div class="feature"><h4>Low cost design</h4><p class="muted">Tiny MCU + simple radio. No screens, no extras — only what saves lives.</p></div>
+        <div class="feature"><h4>Silent feedback</h4><p class="muted">Vibration/LED confirms the alert without drawing attention.</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="margin-top: 26px;">
+      <h3 style="margin: 0 0 12px;">FAQ</h3>
+      <div class="faq">
+        <details>
+          <summary>Does it need a smartphone?</summary>
+          <div class="muted">No. The device can transmit on its own. A phone app is optional for family notifications.</div>
+        </details>
+        <details>
+          <summary>What happens after an SOS?</summary>
+          <div class="muted">Location is captured, the device identity is verified, the alert is prioritized, and the nearest police station is notified for dispatch.</div>
+        </details>
+        <details>
+          <summary>How is privacy protected?</summary>
+          <div class="muted">Data is encrypted; only essential info is shared with responders. There is no continuous tracking unless an SOS is active or a short heartbeat is configured.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top: 26px;">
+      <div class="card">
+        <h3>Contact</h3>
+        <p class="muted">Have questions or want to collaborate on pilots?</p>
+        <div class="grid-3" style="margin-top: 10px;">
+          <div class="feature"><h4>Email</h4><p>support@sosmicrochip.example</p></div>
+          <div class="feature"><h4>Phone</h4><p>+91 98765 43210</p></div>
+          <div class="feature"><h4>Location</h4><p>Kolkata, India</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Affordable SOS Microchip • About Page
+  </footer>
+
+  <script>
+    // Simple simulation to highlight steps with progress
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const simulateBtn = document.getElementById('simulate');
+    const resetBtn = document.getElementById('reset');
+    const bar = document.getElementById('bar');
+    const status = document.getElementById('simStatus');
+
+    let timer = null;
+
+    function resetFlow() {
+      steps.forEach(s => s.classList.remove('active','done'));
+      bar.style.width = '0%';
+      status.textContent = 'Ready.';
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function runSimulation() {
+      resetFlow();
+      const order = [1,2,3,4,5,6,7,8];
+      let i = 0;
+      status.textContent = 'Running…';
+      timer = setInterval(() => {
+        if (i > 0) {
+          const prev = document.querySelector(`[data-step="${order[i-1]}"]`);
+          prev && prev.classList.add('done');
+        }
+        if (i < order.length) {
+          const cur = document.querySelector(`[data-step="${order[i]}"]`);
+          cur && cur.classList.add('active');
+          bar.style.width = ((i+1)/order.length*100).toFixed(0) + '%';
+          status.textContent = `Step ${order[i]} active…`;
+          i++;
+        } else {
+          clearInterval(timer);
+          status.textContent = 'Simulation complete. Police alerted & rescue dispatched.';
+        }
+      }, 700);
+    }
+
+    simulateBtn.addEventListener('click', runSimulation);
+    resetBtn.addEventListener('click', resetFlow);
+  </script>
+</body>
+</html>
