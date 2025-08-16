@@ -191,3 +191,43 @@ footer {
     display: block;
   }
 }
+
+
+/* Responsive Updates for Index & About Pages */
+
+/* Index page already has 768px nav toggle; add hero adjustments */
+@media(max-width: 768px) {
+  /* Hero Section Index */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 5%;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-image img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  /* Features Section */
+  .feature-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+}
